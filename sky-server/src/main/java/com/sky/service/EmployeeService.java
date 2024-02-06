@@ -33,4 +33,10 @@ public interface EmployeeService {
      * @return
      */
     Employee selectById(Long id);
+
+    /**
+     * 编辑员工信息
+     * @param employeeDTO
+     */
+    void updateById(EmployeeDTO employeeDTO);
 }
