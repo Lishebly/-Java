@@ -2,6 +2,7 @@ package com.sky.handler;
 
 import com.sky.constant.MessageConstant;
 import com.sky.exception.BaseException;
+import com.sky.exception.PasswordErrorException;
 import com.sky.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,6 +44,12 @@ public class GlobalExceptionHandler {
         }
         return Result.error(MessageConstant.UNKNOWN_ERROR);
 
+    }
+
+
+    @ExceptionHandler
+    public Result exceptionHandler(PasswordErrorException pe){
+        return Result.error(pe.getMessage());
     }
 
 }

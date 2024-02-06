@@ -138,6 +138,15 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public void chagePassword(PasswordEditDTO passwordEditDTO) {
+        String oldPassword = passwordEditDTO.getOldPassword();
+        Employee employee = employeeMapper.selectById(passwordEditDTO.getEmpId());
+        if (!DigestUtils.md5DigestAsHex(oldPassword.getBytes()).equals(employee.getPassword())){
+            throw new PasswordErrorException("旧密码不对,请重新输入");
+        }
+        employee.setPassword(DigestUtils.md5DigestAsHex(passwordEditDTO.getNewPassword().getBytes()));
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.update(employee);
 
     }
 

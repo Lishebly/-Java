@@ -135,7 +135,7 @@ public class EmployeeController {
 
     @ApiOperation("修改密码")
     @PutMapping("/editPassword")
-    public Result chagePassword(@PathVariable PasswordEditDTO passwordEditDTO){
+    public Result chagePassword(@RequestBody PasswordEditDTO passwordEditDTO){
         log.info("修改密码{}",passwordEditDTO);
         employeeService.chagePassword(passwordEditDTO);
         return Result.success();
