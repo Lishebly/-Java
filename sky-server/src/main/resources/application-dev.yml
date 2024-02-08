@@ -14,4 +14,7 @@ sky:
   alioss:
     endpoint: oss-cn-hangzhou.aliyuncs.com
     bucket-name: my-test-tials-shebly
+  wechat:
+    appid: wxd64e0ff7c3d191b9
+    secret: 8e5c5151d42760e7a249771892075659
 
