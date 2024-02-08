@@ -8,6 +8,7 @@ import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
+import com.sky.exception.BaseException;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
@@ -98,6 +99,13 @@ public class DishServiceImpl implements DishService {
      */
     @Override
     public void startOrStop(String status, Long id) {
+        if (Integer.parseInt(status) == StatusConstant.DISABLE){
+            //判断起售的套餐里是否包含这个菜品,如果包含则不可以停售这个菜品
+            List<Long> list = dishMapper.getSetmealById(id,StatusConstant.ENABLE);
+            if (!list.isEmpty()){
+                throw new BaseException(MessageConstant.SETMEAL_DISH_ON_SALE);
+            }
+        }
         Dish dish = Dish.builder().status(Integer.valueOf(status)).id(id).build();
         dishMapper.update(dish);
     }

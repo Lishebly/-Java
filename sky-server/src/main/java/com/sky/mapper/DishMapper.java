@@ -7,6 +7,7 @@ import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
 import com.sky.enumeration.OperationType;
 import com.sky.vo.DishVO;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -40,4 +41,11 @@ public interface DishMapper {
     DishVO selectById(Long id);
 
     List<Dish> listByCategoryId(Long categoryId);
+
+    /**
+     * 判断起售的套餐里是否包含这个菜品,如果包含则不可以停售这个菜品
+     * @param id
+     * @return
+     */
+    List<Long> getSetmealById(Long id, Integer status);
 }

@@ -50,5 +50,10 @@
         from dish
         where category_id = #{categoryId}
     </select>
+    <select id="getSetmealById" resultType="java.lang.Long">
+        select s.id
+        from setmeal_dish sd,setmeal s
+        where sd.dish_id = #{id} and sd.setmeal_id = s.id and s.status = #{status}
+    </select>
 
 </mapper>
