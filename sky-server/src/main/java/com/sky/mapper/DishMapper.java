@@ -48,4 +48,11 @@ public interface DishMapper {
      * @return
      */
     List<Long> getSetmealById(Long id, Integer status);
+
+    /**
+     * 根据分类id查询菜品users
+     * @param categoryId
+     * @return
+     */
+    List<DishVO> listByCategoryIdOnClient(Long categoryId);
 }

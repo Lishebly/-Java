@@ -55,5 +55,10 @@
         from setmeal_dish sd,setmeal s
         where sd.dish_id = #{id} and sd.setmeal_id = s.id and s.status = #{status}
     </select>
+    <select id="listByCategoryIdOnClient" resultType="com.sky.vo.DishVO">
+        select d.*,c.name categoryName
+        from dish d left outer join category c on d.category_id = c.id
+        where d.category_id = #{categoryId}
+    </select>
 
 </mapper>

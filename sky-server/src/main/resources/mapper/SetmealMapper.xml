@@ -55,4 +55,14 @@
         from setmeal s left outer join category c on s.category_id = c.id
         where s.id = #{id}
     </select>
+    <select id="selectByCategoryId" resultType="com.sky.entity.Setmeal">
+        select *
+        from setmeal
+        where category_id = #{categoryId}
+    </select>
+    <select id="selectDishesBySetmealId" resultType="com.sky.vo.DishItemVO">
+        select d.name,sd.copies,d.image,d.description
+        from dish d ,setmeal_dish sd
+        where d.id = sd.dish_id and sd.setmeal_id = #{id}
+    </select>
 </mapper>

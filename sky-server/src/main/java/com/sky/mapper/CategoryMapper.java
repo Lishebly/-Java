@@ -27,5 +27,11 @@ public interface CategoryMapper {
     @Delete("delete from category where id = #{id}")
     void delete(Long id);
 
-    List<Category> showByType(String type);
+    List<Category> showByType(Integer type);
+
+    /**
+     * 展示所有
+     * @return
+     */
+    List<Category> showAll();
 }

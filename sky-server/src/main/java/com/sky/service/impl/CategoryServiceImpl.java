@@ -112,7 +112,10 @@ public class CategoryServiceImpl implements CategoryService {
      * @return
      */
     @Override
-    public List<Category> selectByType(String type) {
+    public List<Category> selectByType(Integer type) {
+        if (type == null){
+            return categoryMapper.showAll();
+        }
         return categoryMapper.showByType(type);
     }
 

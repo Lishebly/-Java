@@ -22,6 +22,8 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //TODO1 测试完放开拦截器
+//        if (1== 1) return true;
         //判断当前拦截到的是Controller的方法还是其他资源
         if (!(handler instanceof HandlerMethod)) {
             //当前拦截到的不是动态方法，直接放行

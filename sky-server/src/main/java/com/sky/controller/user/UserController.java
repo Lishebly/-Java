@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Api("C端-用户接口")
+@Api(tags = "C端-用户接口")
 @Slf4j
 @RequestMapping("/user/user")
 public class UserController {

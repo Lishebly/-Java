@@ -46,5 +46,5 @@ public interface CategoryService {
      * @param type
      * @return
      */
-    List<Category> selectByType(String type);
+    List<Category> selectByType(Integer type);
 }

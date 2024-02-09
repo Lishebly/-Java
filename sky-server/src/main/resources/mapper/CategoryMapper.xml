@@ -34,4 +34,8 @@
         from category
         where type = #{type};
     </select>
+    <select id="showAll" resultType="com.sky.entity.Category">
+        select *
+        from category
+    </select>
 </mapper>

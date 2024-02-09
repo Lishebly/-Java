@@ -56,4 +56,11 @@ public interface DishService {
      * @return
      */
     List<Dish> listByCategoryId(Long categoryId);
+
+    /**
+     * 用户端根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+    List<DishVO> list1ByCategoryId(Long categoryId);
 }
