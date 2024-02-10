@@ -34,9 +34,9 @@
         select d.*,c.name categoryName
         from dish d left outer join category c on d.category_id = c.id
         <where>
-            <if test="name != null and name != ''">name like concat('%', #{name}, '%')</if>
-            <if test="categoryId != null">and category_id = #{categoryId}</if>
-            <if test="status != null">and status = #{status}</if>
+            <if test="name != null and name != ''">d.name like concat('%', #{name}, '%')</if>
+            <if test="categoryId != null">and d.category_id = #{categoryId}</if>
+            <if test="status != null">and d.status = #{status}</if>
         </where>
         order by d.create_time desc
     </select>
@@ -58,7 +58,7 @@
     <select id="listByCategoryIdOnClient" resultType="com.sky.vo.DishVO">
         select d.*,c.name categoryName
         from dish d left outer join category c on d.category_id = c.id
-        where d.category_id = #{categoryId}
+        where d.category_id = #{categoryId} and d.status = 1
     </select>
 
 </mapper>
