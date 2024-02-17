@@ -44,4 +44,35 @@
         </set>
         WHERE id = #{id}
     </update>
+    <select id="pageSelect" resultType="com.sky.entity.Orders">
+        SELECT *
+        FROM orders
+        WHERE 1=1
+        <!-- 判断字段是否为空，并根据条件拼接 SQL 查询语句 -->
+        <if test="number != null and number!=''">
+            and number like concat('%',#{number},'%')
+        </if>
+        <if test="phone != null and phone!=''">
+            and phone like concat('%',#{phone},'%')
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        <if test="beginTime != null">
+            AND order_time &gt;= #{beginTime}
+        </if>
+        <if test="endTime != null">
+            AND order_time &lt;= #{endTime}
+        </if>
+        <if test="userId != null">
+            AND user_id = #{userId}
+        </if>
+        order by orders.order_time desc
+    </select>
+    <select id="getStatus" resultType="com.sky.vo.MyList">
+        select status,count(*) count
+        from orders
+        group by orders.status
+    </select>
+
 </mapper>
