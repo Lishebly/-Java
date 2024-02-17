@@ -29,4 +29,11 @@ public interface OrderMapper {
      */
     @Select("select * from orders where status = #{pendingPayment} and order_time < #{time}")
     List<Orders> getByStatusAndOrderTimeLT(Integer pendingPayment, LocalDateTime time);
+
+    /**
+     * 根据订单号查询订单
+     * @param orderNumber
+     */
+    @Select("select * from orders where number = #{orderNumber}")
+    Orders getByNumber(String orderNumber);
 }

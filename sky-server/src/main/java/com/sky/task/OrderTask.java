@@ -41,7 +41,7 @@ public class OrderTask {
     /**
      * 每天凌晨 1 点执行
      */
-    @Scheduled(cron = "0 1 * * *")
+    @Scheduled(cron = "0 0 1 * * *")
 //    @Scheduled(cron = "0/5 * * * * ?")
     public void process() {
         log.info("定时处理派送中的订单{}", LocalDateTime.now());
