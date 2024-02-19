@@ -1,6 +1,7 @@
 package com.sky.mapper;
 
 import com.github.pagehelper.Page;
+import com.sky.dto.GoodsSalesDTO;
 import com.sky.dto.OrdersPageQueryDTO;
 import com.sky.entity.Orders;
 import com.sky.vo.MyList;
@@ -62,4 +63,29 @@ public interface OrderMapper {
      * @return
      */
     List<MyList> getStatus();
+
+    /**
+     * 查询出当天营业额
+     * @param map
+     * @return
+     */
+    Double turnoverStatisticsByMap(Map map);
+
+    /**
+     *搜索订单
+     * @param start
+     * @param over
+     * @param status
+     * @return
+     */
+    Integer orderCount(LocalDateTime start, LocalDateTime over, Integer status);
+
+    /**
+     * 获取当天订单列表
+     * @param start
+     * @param over
+     * @param status
+     * @return
+     */
+    List<GoodsSalesDTO> getOrderListByLocalDateTimeAndStatus(LocalDateTime start, LocalDateTime over, Integer status);
 }

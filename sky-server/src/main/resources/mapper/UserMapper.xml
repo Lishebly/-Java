@@ -13,4 +13,14 @@
         from user
         where openid = #{openid}
     </select>
+    <select id="getAllUserCount" resultType="java.lang.Integer">
+        select count(*)
+        from user
+        where create_time &lt;= #{end}
+    </select>
+    <select id="getNewUserCount" resultType="java.lang.Integer">
+        select count(*)
+        from user
+        where create_time &lt;= #{end} and create_time &gt;= #{begin}
+    </select>
 </mapper>

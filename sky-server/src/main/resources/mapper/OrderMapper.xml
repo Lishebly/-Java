@@ -12,7 +12,7 @@
                 #{payStatus},
                 #{amount}, #{remark}, #{phone}, #{address}, #{userName}, #{consignee}, #{cancelReason},
                 #{rejectionReason}, #{cancelTime}, #{estimatedDeliveryTime}, #{deliveryStatus}, #{deliveryTime},
-                #{packAmount}, #{tablewareNumber},#{tablewareStatus})
+                #{packAmount}, #{tablewareNumber}, #{tablewareStatus})
     </insert>
     <update id="update">
         UPDATE orders
@@ -70,9 +70,43 @@
         order by orders.order_time desc
     </select>
     <select id="getStatus" resultType="com.sky.vo.MyList">
-        select status,count(*) count
+        select status, count(*) count
         from orders
         group by orders.status
+    </select>
+    <select id="turnoverStatisticsByMap" resultType="java.lang.Double">
+        select sum(amount)
+        from orders
+        <where>
+            <if test="status != null">status = #{status}</if>
+            <if test="begin != null">
+                and order_time &gt;= #{begin}
+            </if>
+            <if test="end != null">and order_time &lt;= #{end}</if>
+        </where>
+    </select>
+    <select id="orderCount" resultType="java.lang.Integer">
+        select count(*)
+        from orders
+        <where>
+            1=1
+            <if test="status != null">and status = #{status}</if>
+            <if test="start != null">and order_time &gt;= #{start}</if>
+            <if test="over != null">and order_time &lt;= #{over}</if>
+        </where>
+    </select>
+    <select id="getOrderListByLocalDateTimeAndStatus" resultType="com.sky.dto.GoodsSalesDTO">
+        select od.name name, sum(od.number) number
+        from orders o,order_detail od
+        <where>
+            o.id = od.order_id
+            <if test="status != null">and o.status = #{status}</if>
+            <if test="start != null">and o.order_time &gt;= #{start}</if>
+            <if test="over != null">and o.order_time &lt;= #{over}</if>
+        </where>
+        group by od.name
+        order by number desc
+        limit 0,10
     </select>
 
 </mapper>
