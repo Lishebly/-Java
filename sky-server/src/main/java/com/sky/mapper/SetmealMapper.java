@@ -77,4 +77,11 @@ public interface SetmealMapper {
      * @return
      */
     List<DishItemVO> selectDishesBySetmealId(Long id);
+
+    /**
+     * 根据状态查询套餐数量
+     * @param disable
+     * @return
+     */
+    Integer countByStatus(Integer disable);
 }

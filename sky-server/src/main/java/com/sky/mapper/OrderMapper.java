@@ -88,4 +88,6 @@ public interface OrderMapper {
      * @return
      */
     List<GoodsSalesDTO> getOrderListByLocalDateTimeAndStatus(LocalDateTime start, LocalDateTime over, Integer status);
+
+
 }

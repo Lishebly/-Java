@@ -6,6 +6,7 @@ import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
 import com.sky.enumeration.OperationType;
+import com.sky.vo.DishOverViewVO;
 import com.sky.vo.DishVO;
 import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
@@ -55,4 +56,12 @@ public interface DishMapper {
      * @return
      */
     List<DishVO> listByCategoryIdOnClient(Long categoryId);
+
+
+    /**
+     * 根据状态查询菜品数量
+     * @param satatus
+     * @return
+     */
+    Integer countByStatus(Integer satatus);
 }
